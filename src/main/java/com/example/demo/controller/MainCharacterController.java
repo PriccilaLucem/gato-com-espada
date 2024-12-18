@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.models.MainCharacter;
+import com.example.demo.models.MainCharacterModel;
 import com.example.demo.service.MainCharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +14,17 @@ public class MainCharacterController {
     private MainCharacterService service;
 
     @GetMapping
-    public List<MainCharacter> getAllCharacters() {
+    public List<MainCharacterModel> getAllCharacters() {
         return service.getAllCharacters();
     }
 
     @PostMapping
-    public MainCharacter createCharacter(@RequestBody MainCharacter character) {
+    public MainCharacterModel createCharacter(@RequestBody MainCharacterModel character) {
         return service.createCharacter(character);
     }
 
     @GetMapping("/{nick}")
-    public MainCharacter getCharacterByNick(@PathVariable String nick) {
+    public MainCharacterModel getCharacterByNick(@PathVariable String nick) {
         return service.findByNick(nick);
     }
 

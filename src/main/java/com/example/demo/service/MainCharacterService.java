@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.models.MainCharacter;
+import com.example.demo.models.MainCharacterModel;
 import com.example.demo.repository.MainCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,15 +12,15 @@ public class MainCharacterService {
     @Autowired
     private MainCharacterRepository repository;
 
-    public List<MainCharacter> getAllCharacters() {
+    public List<MainCharacterModel> getAllCharacters() {
         return repository.findAll();
     }
 
-    public MainCharacter createCharacter(MainCharacter character) {
+    public MainCharacterModel createCharacter(MainCharacterModel character) {
         return repository.save(character);
     }
 
-    public MainCharacter findByNick(String nick) {
+    public MainCharacterModel findByNick(String nick) {
         return repository.findByNick(nick);
     }
 

@@ -4,17 +4,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "main_characters")
-public class MainCharacter {
+public class MainCharacterModel {
     @Id
+    private String id;
     private String nick;
     private Integer healthPoints;
     private Integer damagePoints;
     private Integer mana;
     private Integer level;
 
-    public MainCharacter(){}
+    public MainCharacterModel(){}
 
-    public MainCharacter(String nick){
+    public MainCharacterModel(String nick){
         this.nick = nick;
         this.healthPoints = 20;
         this.damagePoints = 6;

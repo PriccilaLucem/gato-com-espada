@@ -1,27 +1,36 @@
-version: '3.8'
+
 services:
   mongodb:
     image: mongo:5.0
     container_name: mongodb
     ports:
-      - "27017:27017"
+      - 27017:27017
     volumes:
       - mongo_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    networks:
+      - backend
 
   springboot-app:
-    build:
+    container_name: springboot-app
+    build: 
       context: .
       dockerfile: Dockerfile
-    container_name: springboot-app
     ports:
       - "8080:8080"
     depends_on:
       - mongodb
+    entrypoint: ["./wait-for-it.sh", "mongodb:27017", "--", "java", "-jar", "/app/springboot-app.jar"]
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://root:rootpassword@mongodb:27017/demo?authSource=admin
+    networks:
+      - backend
 
 volumes:
   mongo_data:
+
+networks:
+  backend:
+    driver: bridge

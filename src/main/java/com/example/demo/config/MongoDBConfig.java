@@ -5,18 +5,15 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MongoDBConfig {
 
-    @Value("${spring.data.mongodb.uri}")
-    private String mongoUri;
+    private String mongoUri = "mongodb://root:rootpassword@localhost:27017/demo?authSource=admin";
 
-    @Value("${spring.data.mongodb.database}")
-    private String databaseName;
+    private String databaseName = "demo";
 
     @Bean
     public MongoClient mongoClient() {
